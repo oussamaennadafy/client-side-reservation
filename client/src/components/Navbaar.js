@@ -1,29 +1,22 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { BsSearch } from "react-icons/bs";
 
-
-const Navbaar = () => {
+const Navbaar = () =>
+{
     return (
         <header>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <NavLink className="navbar-brand" to="/">Reservation</NavLink>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                          
-                        </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className ="btn btn-outline-success" type ="submit">Search</button>
-                        </form>
-                    </div>
+            <nav className="bg-[#353333] h-22 w-screen flex items-center justify-between">
+                <div className='flex items-center'>
+                    <img className='w-32 mb-5 cursor-pointer' src='https://www.oncf.ma/images/logo.png?v4.6'></img>
+                    <ul className='flex gap-5 ml-20 text-gray-200'>
+                        <li className='cursor-pointer'>Company</li>
+                        <li className='cursor-pointer'>Travelers</li>
+                        <li className='cursor-pointer'>Freight and Logistics</li>
+                        <li className='cursor-pointer'>Development</li>
+                        <li className='cursor-pointer'>Al Boraq</li>
+                    </ul>
                 </div>
+                <i className='text-white mr-12 cursor-pointer font-[24px]'><BsSearch /></i>
             </nav>
         </header>
     )
