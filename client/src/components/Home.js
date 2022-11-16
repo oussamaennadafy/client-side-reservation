@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-
+import swal from 'sweetalert';
 
 const Home = () =>
 {
@@ -44,8 +44,9 @@ const Home = () =>
   }
   const book = (id) =>
   {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     console.log(id);
-    result.scrollIntoView({ behavior: 'smooth' });
+    swal("Booked Successfully", "Have a nice Trip", "success")
   }
   // const [getuserdata, setUserdata] = useState([]);
 
@@ -134,8 +135,8 @@ const Home = () =>
                   <tr className="bg-white dark:bg-gray-800">
                     <td className="py-4 px-6">{element.departureCity}</td>
                     <td className="py-4 px-6">{element.arrivalCity}</td>
-                    <td className="py-4 px-6">{element.departureTime.replace('T',' at ')}</td>
-                    <td className="py-4 px-6">{element.arrivalTime.replace('T',' at ')}</td>
+                    <td className="py-4 px-6">{element.departureTime.replace('T', ' at ')}</td>
+                    <td className="py-4 px-6">{element.arrivalTime.replace('T', ' at ')}</td>
                     <td className="py-4 px-6">{element.seats}</td>
                     <td className="py-4 px-6">{element.price} Mad</td>
                     <td className="py-4 px-6 text-green-400">
