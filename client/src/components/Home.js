@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Formik } from 'formik';
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { NavLink } from "react-router-dom";
-import { adddata, deldata } from "./context/ContextProvider";
-import { updatedata } from "./context/ContextProvider";
+
 
 const Home = () =>
 {
+  const date = new Date();
+  const today = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
   const [data, setData] = useState([]);
   const [formdata, setformdata] = useState(
     {
@@ -45,6 +41,11 @@ const Home = () =>
     result.classList.remove("hidden");
     result.scrollIntoView({ behavior: 'smooth' });
     setData(data);
+  }
+  const book = (id) =>
+  {
+    console.log(id);
+    result.scrollIntoView({ behavior: 'smooth' });
   }
   // const [getuserdata, setUserdata] = useState([]);
 
@@ -91,64 +92,6 @@ const Home = () =>
 
   return (
     <>
-      {/* {udata ? (
-        <>
-          <div
-            className="alert alert-success alert-dismissible fade show"
-            role="alert"
-          >
-            trip from <strong>{udata.departureCity}</strong> to
-            <strong> {udata.arrivalCity}</strong> added succesfully!
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
-          </div>
-        </>
-      ) : (
-        ""
-      )}
-      {updata ? (
-        <>
-          <div
-            className="alert alert-success alert-dismissible fade show"
-            role="alert"
-          >
-            trip from <strong>{updata.departureCity}</strong> to
-            <strong> {udata.arrivalCity}</strong> updated succesfully!
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
-          </div>
-        </>
-      ) : (
-        ""
-      )}
-
-      {dltdata ? (
-        <>
-          <div
-            className="alert alert-danger alert-dismissible fade show"
-            role="alert"
-          >
-            trip from <strong>{dltdata.departureCity}</strong> to
-            <strong>{udata.arrivalCity}</strong> deleted succesfully!
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="alert"
-              aria-label="Close"
-            ></button>
-          </div>
-        </>
-      ) : (
-        ""
-      )} */}
       <section className="flex justify-center" id="bg-pic">
         <div className="text-white flex flex-col gap-5 pt-16 w-3/4 h-1/2 mt-36 relative rounded">
           <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 rounded"></div>
@@ -166,7 +109,7 @@ const Home = () =>
               </div>
               <div className="flex w-1/4 flex-col gap-3">
                 <label>departure date</label>
-                <input onChange={onChange} id='departure_date' type="date" className="h-1/2 text-gray-900 rounded outline-none px-2 py-1" name="departureDate"></input>
+                <input onChange={onChange} id='departure_date' min={today} type="date" className="h-1/2 text-gray-900 rounded outline-none px-2 py-1" name="departureDate"></input>
               </div>
               <button className="h-1/2 text-gray-100 bg-blue-500 rounded outline-none px-4 py-2 mt-auto mb-1 w-full" type="submit">Search</button>
             </form>
@@ -191,12 +134,12 @@ const Home = () =>
                   <tr className="bg-white dark:bg-gray-800">
                     <td className="py-4 px-6">{element.departureCity}</td>
                     <td className="py-4 px-6">{element.arrivalCity}</td>
-                    <td className="py-4 px-6">{element.departureTime}</td>
-                    <td className="py-4 px-6">{element.arrivalTime}</td>
+                    <td className="py-4 px-6">{element.departureTime.replace('T',' at ')}</td>
+                    <td className="py-4 px-6">{element.arrivalTime.replace('T',' at ')}</td>
                     <td className="py-4 px-6">{element.seats}</td>
                     <td className="py-4 px-6">{element.price} Mad</td>
                     <td className="py-4 px-6 text-green-400">
-                      <button className="bg-green-50 px-3 py-2 rounded font-me">Book Now</button>
+                      <button className="bg-green-50 active:bg-green-100 transition rounded px-3 py-2" onClick={() => { book(element._id) }}>Book Now</button>
                     </td>
                   </tr>
                 </>
